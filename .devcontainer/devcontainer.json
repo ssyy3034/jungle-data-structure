@@ -1,0 +1,30 @@
+{
+  "name": "C Development Container",
+  "dockerFile": "Dockerfile",
+  "remoteUser": "jungle",
+
+  "postCreateCommand": "mkdir -p .vscode build",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cpptools-extension-pack"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "C_Cpp.default.compilerPath": "/usr/bin/gcc",
+        "C_Cpp.default.intelliSenseMode": "gcc-x64",
+        "C_Cpp.errorSquiggles": "Enabled",
+        "C_Cpp.default.includePath": ["/usr/include", "/usr/local/include"]
+      }
+    }
+  },
+
+  "mounts": [
+    "type=bind,source=/run/host-services/ssh-auth.sock,target=/ssh-agent"
+  ],
+  "containerEnv": {
+    "SSH_AUTH_SOCK": "/ssh-agent"
+  }
+}
